@@ -1,0 +1,18 @@
+{
+    "contents" : "# library for str_pad - allow to add leadimg zeros\nlibrary(stringr)\n\n# unzip source file (downloaded from coursera website)\nunzip(\"rprog-data-specdata.zip\")\n\n# returns table cantined all requested files.\nreadfiles <- function(dir = \"specdata\", files = 1:332) {\n    \n    res_table <- c()\n    \n    for(f in files){\n        \n        # modify number to 3 digits zerofilled character\n        f000 <- str_pad(f, 3, side = \"left\", pad = 0)\n        file_name <- paste(dir, \"/\", f000, \".csv\", sep=\"\")\n        cur_file <- read.csv(file_name)\n        res_table <- rbind(res_table, cur_file)\n    }\n    res_table\n}\n\n\npollutantmean <- function(directory, pollutant, id = 1:332){\n    pollut_data <- readfiles(directory, id)\n    round(mean(pollut_data[,pollutant], na.rm = TRUE), 3)\n    \n    \n}\n",
+    "created" : 1442143171213.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "7|56|20|0|\n",
+    "hash" : "2150628121",
+    "id" : "221B96B0",
+    "lastKnownWriteTime" : 1442145868,
+    "path" : "~/Documents/R/Coursera_R/PA1/pollutantmean.R",
+    "project_path" : "pollutantmean.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : true,
+    "type" : "r_source"
+}
