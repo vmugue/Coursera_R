@@ -1,0 +1,17 @@
+{
+    "contents" : "# library for str_pad - allow to add leadimg zeros\nlibrary(stringr)\n\n# unzip source file (downloaded from coursera website)\nunzip(\"rprog-data-specdata.zip\")\n\n# returns table cantined all requested files.\nreadfiles <- function(dir = \"specdata\", id = 1:332) {\n    \n    res_table <- c()\n    \n    for(f in id){\n        \n        # modify number to 3 digits zerofilled character\n        f000 <- str_pad(f, 3, side = \"left\", pad = 0)\n        file_name <- paste(dir, \"/\", f000, \".csv\", sep=\"\")\n        cur_file <- read.csv(file_name)\n        res_table <- rbind(res_table, cur_file)\n    }\n    res_table\n}\n\n\npollutantmean <- function(directory, pollutant, id = 1:332){\n    pollut_data <- readfiles(directory, id)\n    round(mean(pollut_data[,pollutant], na.rm = TRUE), 3)\n    \n    \n}\n\n\ncomplete <- function(directory = \"specdata\", id = 1:332){\n    \n    \n    # create data frame with rigth nimber of rows\n    result <- data.frame(id = 1:length(id), nobs=NA)\n    \n    # k - counter, will help to fill \"result\" data frame\n    k <- 1\n    for(i in id){\n        \n        pollut_data <- readfiles(directory, i)\n        #file for this particular id (only required columns)\n        pollution_for_i <- pollut_data[, c(\"sulfate\", \"nitrate\")]\n        \n        # adding this complete cases for this id to result data frame\n        result$nobs[k] <- sum(complete.cases(pollution_for_i))\n        \n        # counter for following rows\n        k <- k+1\n    }\n    \n    result\n}\n\n\ncorr <- function(directory = \"specdata\", threshold = 0){\n    com_case <- complete()\n    files_for_corr <- com_case$id[com_case$nobs > threshold]\n    result <- c()\n    class(result) <- \"numeric\"\n    \n    for(i in files_for_corr){\n        pollut_data <- readfiles(directory, i)\n        pollut_data_cc <- pollut_data[\n            complete.cases(pollut_data),\n                c(\"sulfate\", \"nitrate\")]\n        result <- c(result,\n                cor(pollut_data_cc$sulfate, pollut_data_cc$nitrate))\n        \n    }\n    result\n}",
+    "created" : 1442219935142.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2830637061",
+    "id" : "F4704ABE",
+    "lastKnownWriteTime" : 1442220157,
+    "path" : "~/R/R/PA1/corr.R",
+    "project_path" : "corr.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "type" : "r_source"
+}

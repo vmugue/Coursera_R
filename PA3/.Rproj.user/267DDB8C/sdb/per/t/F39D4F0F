@@ -1,0 +1,18 @@
+{
+    "contents" : "source('~/R/R/PA3/init.R')\n\nrankall <- function(outcome, num = \"best\") {\n    source('~/R/R/PA3/init.R')\n    if(!(outcome %in% valid_best_outcome)) stop(\"invalid outcome\")\n    \n    result <- data.frame(state = states, hospital = NA)\n    \n    for(state in states){\n        \n        result$hospital[result$state == state] = rankhospital(state, outcome, num)\n        \n    \n    }\n    ## Return a data frame with the hospital names and the\n    ## (abbreviated) state name\n    result\n}\n",
+    "created" : 1442241473462.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1498939765",
+    "id" : "F39D4F0F",
+    "lastKnownWriteTime" : 1442242510,
+    "path" : "~/R/R/PA3/rankall.R",
+    "project_path" : "rankall.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : true,
+    "type" : "r_source"
+}

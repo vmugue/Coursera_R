@@ -1,0 +1,18 @@
+{
+    "contents" : "library(datasets)\ndata(iris)\ndata(mtcars)\nA01 <- mean(iris$Sepal.Length[iris$Species == \"virginica\"])\nA02 <- apply(iris[, 1:4], 2, mean)\nA03 <- tapply(mtcars$mpg, mtcars$cyl, mean)\ntmp04 <- tapply(mtcars$hp, mtcars$cyl, mean)\nA04 <- tmp04[[\"8\"]] - tmp04[[\"4\"]]\n\n",
+    "created" : 1442242620126.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "404695232",
+    "id" : "7481BB56",
+    "lastKnownWriteTime" : 1442244735,
+    "path" : "~/R/R/Q3/Q3.R",
+    "project_path" : "Q3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : true,
+    "type" : "r_source"
+}
