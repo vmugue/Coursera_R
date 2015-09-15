@@ -1,0 +1,18 @@
+{
+    "contents" : "source('~/R/R/PA3/init.R')\n\nbest <- function(state, outcome) {\n    if(!(outcome %in% valid_best_outcome)) stop(\"invalid outcome\")\n    \n    if(!(state %in% states)) stop(\"invalid state\")\n    \n    \n    outcome_best <- outcome_best[complete.cases(outcome_best$State, outcome_best[outcome]),]\n    outcome_best_state <- outcome_best[outcome_best$State == state,]\n    \n    \n    \n\n    outcome_best_hospitals <- outcome_best_state$Hospital.Name[outcome_best_state[outcome] == min(outcome_best_state[outcome])]\n\n    as.character(sort(outcome_best_hospitals)[1])\n   \n    ## Read outcome data\n    ## Check that state and outcome are valid\n    ## Return hospital name in that state with lowest 30-day death\n    ## rate\n}\n",
+    "created" : 1442231907835.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3766347160",
+    "id" : "E0086B42",
+    "lastKnownWriteTime" : 1442241736,
+    "path" : "~/R/R/PA3/best.R",
+    "project_path" : "best.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : true,
+    "type" : "r_source"
+}

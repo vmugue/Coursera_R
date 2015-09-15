@@ -1,0 +1,18 @@
+{
+    "contents" : "source('~/R/R/PA3/init.R')\n\n\nrankhospital <- function(state, outcome, num = \"best\") {\n\n    ## Check that state and outcome are valid\n    if(!(outcome %in% valid_best_outcome)) stop(\"invalid outcome\")\n    if(!(state %in% outcome_data$State)) stop(\"invalid state\")\n    \n    outcome_best <- outcome_best[complete.cases(outcome_best$State, outcome_best[outcome]),]\n    outcome_best_state <- outcome_best[outcome_best$State == state,]\n    \n    \n    if(num == \"best\") num <- 1\n    if(num == \"worst\") num <- nrow(outcome_best_state)\n    \n    outcome_best_state <- outcome_best_state[order(outcome_best_state$Hospital.Name),]\n    #print(outcome_best_state)\n    outcome_best_state <- outcome_best_state[order(outcome_best_state[outcome]),]\n    #print(outcome_best_state)\n    outcome_best_state$Hospital.Name[num]\n    \n    \n    \n    ## Return hospital name in that state with the given rank\n    ## 30-day death rate\n}",
+    "created" : 1442238418741.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4292354678",
+    "id" : "BFBF1066",
+    "lastKnownWriteTime" : 1442242020,
+    "path" : "~/R/R/PA3/rankhospital.R",
+    "project_path" : "rankhospital.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : true,
+    "type" : "r_source"
+}

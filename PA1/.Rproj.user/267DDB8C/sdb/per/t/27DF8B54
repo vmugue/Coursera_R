@@ -1,0 +1,17 @@
+{
+    "contents" : "# library for str_pad - allow to add leadimg zeros\nlibrary(stringr)\n\n# unzip source file (downloaded from coursera website)\nunzip(\"rprog-data-specdata.zip\")\n\n# returns table cantined all requested files.\nreadfiles <- function(dir = \"specdata\", files = 1:332) {\n    \n    res_table <- c()\n    \n    for(f in files){\n        \n        # modify number to 3 digits zerofilled character\n        f000 <- str_pad(f, 3, side = \"left\", pad = 0)\n        file_name <- paste(dir, \"/\", f000, \".csv\", sep=\"\")\n        cur_file <- read.csv(file_name)\n        res_table <- rbind(res_table, cur_file)\n    }\n    res_table\n}\n\n\npollutantmean <- function(directory, pollutant, id = 1:332){\n    pollut_data <- readfiles(directory, id)\n    round(mean(pollut_data[,pollutant], na.rm = TRUE), 3)\n    \n    \n}\n\n\ncomplete <- function(directory = \"specdata\", id = 1:332){\n    pollut_data <- readfiles(directory, id)\n    \n    # create data frame with rigth nimber of rows\n    result <- data.frame(id = 1:length(id), nobs=NA)\n    \n    # k - counter, will help to fill \"result\" data frame\n    k <- 1\n    for(i in id){\n        #file for this particular id (only required columns)\n        pollution_for_i <- pollut_data[pollut_data$ID == i, c(\"sulfate\", \"nitrate\")]\n        \n        # adding this complete cases for this id to result data frame\n        result$nobs[k] <- sum(complete.cases(pollution_for_i))\n        \n        # counter for following rows\n        k <- k+1\n    }\n    \n    result\n}",
+    "created" : 1442219932433.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "124775226",
+    "id" : "27DF8B54",
+    "lastKnownWriteTime" : 1442219839,
+    "path" : "~/R/R/PA1/complete.R",
+    "project_path" : "complete.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
